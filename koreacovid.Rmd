@@ -24,8 +24,8 @@ state of a patient must be died or alive - we adjust that as well
   
 # Question 1 - Is dying independent of sex
 
-$H_0$ COVID-19 deaths in Korea, Jan-May 2020 are unrelated to sex
-$H_A$ There is a relationship between deaths in Korea Jan-May 2020 and sex of the patient.
+$H_0$ COVID-19 deaths in Korea, Jan-May 2020 are unrelated to sex.
+$H_A$ There is a relationship between Korean COVID deaths and sex of the patient from Jan-May 2020.
 
 Table of patients:
 ```{r}
@@ -38,6 +38,7 @@ kRdata$result = as.factor(kRdata$result)
 with(kRdata, table(Sex, result))
 
 ```
+The table above shows that 19 more males died during that time period than women. More research is required to make a determination on the null hypothesis.
 
 ## We create two bar charts - one based on frequency and the other on percent, use ggplot commands to do this
 
@@ -57,7 +58,7 @@ basicCC <- ggplot(dd2,aes(x=result,y=prcnt*100,fill=Sex))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-
+Bar Chart 1 clearly shows the difference in total number of living women vs men. Bar chart 2 shows a clear difference in death percentage. Men showed 65% while women only showed 35%.
 
 ## Numerical results
 ```{r}
@@ -66,6 +67,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
+This table shows that Korean men were 2.14 times more likely than women to die from COVID-19 from Jan-May 2020 if you divide 3 by 1.4.
 
 ## Inferential results 
 
@@ -78,4 +80,4 @@ fisher.test(table1)
 
 ## Conclusions
 
-Since the p-value is .001, we reject the null hypothesis. There is an actual difference between male and female deaths from COVID-19 in Korea from Jan-May 2020.  You are 2.3 times more likely to die if you're a male.
+Since the p-value is .001, we reject the null hypothesis. There is a very small likelihood that the results happened purely by chance. There is an actual difference between male and female deaths from COVID-19 in Korea from Jan-May 2020 (65% vs 35%) and men were 2.3 times more likely to die than women.
